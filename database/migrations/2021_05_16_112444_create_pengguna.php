@@ -22,7 +22,7 @@ class CreatePengguna extends Migration
             $table->string ('tempat_lahir');
             $table->string ('alamat');
             $table->string ('hp');
-            $table->longtext ('hobi');
+            $table->longtext ('minat');
             $table->timestamps();
         });
     }

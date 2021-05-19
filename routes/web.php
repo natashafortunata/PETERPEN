@@ -19,3 +19,7 @@ Route::get('/', function () {
 Route::get('/admin_test','adminController@view');
 Route::get('/login_admin','adminController@login');
 Route::get('/user','userController@view');
+Route::get('/biodata','userController@biodata');
+Route::get('/tes','tesController@viewTes');
+Route::get('/tambah_tes','tesController@viewInputTes');
+Route::get('/tambah_jadwal','jadwalController@viewInputJadwal');

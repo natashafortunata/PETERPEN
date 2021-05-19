@@ -10,4 +10,7 @@ class userController extends Controller
         return view('User.user');
     }
 
+    public function biodata(){
+        return view('User.biodata');
+    }
 }

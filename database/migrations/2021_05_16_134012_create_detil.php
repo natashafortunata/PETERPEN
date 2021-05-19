@@ -15,11 +15,11 @@ class CreateDetil extends Migration
     {
         Schema::create('detil', function (Blueprint $table) {
             $table->increments('id_detail');
-            $table->increments('id_tes');
-            $table->increments('id_jadwal');
             $table->string ('kapasitas');
             $table->string ('linkTes');
             $table->string ('status');
+            $table->string ('id_jadwal');
+            $table->string ('id_tes');
             $table->timestamps();
         });
     }

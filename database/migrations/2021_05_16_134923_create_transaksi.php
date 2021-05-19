@@ -15,10 +15,8 @@ class CreateTransaksi extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->increments('id_bayar');
-            $table->increments('id_user');
-            $table->increments('id_admin');
             $table->string ('total');
-            $table->file ('file_bayar');
+            $table->string ('file_bayar');
             $table->date ('tgl_konfirmasi');
             $table->timestamps();
         });
