@@ -1,88 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SITESI2021</title>
-    <link href="{{asset('admin/css/form.css')}}" rel="stylesheet" />
-</head>
-<body>
-<form action="index.html" method="post">
-      
-      <h1>REGISTRASI</h1>
-      
-        <label for="name">Nama Lengkap :</label>
-        <input type="text" id="name" name="user_name">
-        
-        <label for="nik">NIK :</label>
-        <input type="text" id="nik" name="nik">
-        
-        <label for="password">Alamat :</label>
-        <input type="text" id="password" name="user_password">
-        
-        <label for="password">Tanggal Lahir :</label>
-        <input type="date" id="password" name="user_password">
-
-        <label>Jenis Kelamin:</label>
-        <input type="radio" id="under_13" value="under_13" name="user_age"><label for="under_13" class="light">Pria</label><br>
-        <input type="radio" id="over_13" value="over_13" name="user_age"><label for="over_13" class="light">Wanita</label><br>
-        <br>
-
-        <label for="job">Pekerjaan :</label>
-        <select id="job" name="user_job">
-            <optgroup label="Pendidikan">
-            <option value="frontend_developer">Pelajar</option>
-            <option value="php_developor">Mahasiswa</option>
-            <option value="python_developer">Guru</option>
-            <option value="rails_developer">Dosen</option>
-            </optgroup>
-            <optgroup label="Perusahaan/Bisnis">
-            <option value="Android_developer">Karyawan Swasta/Negeri</option>
-            <option value="iOS_developer">Manajer</option>
-            <option value="mobile_designer">Direktur</option>
-            <option value="WordPress_developer">Akuntan</option>
-            <option value="WordPress_developer">Asisten Administrasi/Sekretaris</option>
-            <option value="WordPress_developer">Wirausaha</option>
-            </optgroup>
-            <optgroup label="IT">
-            <option value="business_owner">Programmer</option>
-            <option value="freelancer">Software Engine</option>
-            <option value="WordPress_developer">Data Analis</option>
-            <option value="WordPress_developer">System Analis</option>
-            <option value="WordPress_developer">Support System</option>
-            </optgroup>
-            <optgroup label="Kesehatan">
-            <option value="secretary">Dokter</option>
-            <option value="maintenance">Perawat</option>
-            <option value="WordPress_developer">Bidan</option>
-            <option value="WordPress_developer">Apoteker</option>
-            </optgroup>
-            <optgroup label="Lainya">
-            <option value="WordPress_developer">Wiraswasta</option>
-        </select>
-      
-        <label>Bidang Minat :</label>
-        <input type="checkbox" id="development" value="interest_development" name="user_interest" ><label class="light" for="development">Musik</label><br>
-        <input type="checkbox" id="design" value="interest_design" name="user_interest"><label class="light" for="design">Olahraga</label><br>
-        <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Bisnis</label><br>
-        <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Kuliner</label><br>
-        <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Sejarah</label><br>
-        <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Fotografi</label><br>
-        <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Videografi</label><br>
-        <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Game</label><br>
-        <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Teknologi</label><br>
-        <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Fashion</label><br>
-        <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Penelitian</label><br>
-        
-        <br>
-        <label for="password">No. HP :</label>
-        <input type="text" id="password" name="user_password">
-
-      </fieldset>
-      <br>
-      <button type="submit">DAFTAR</button>
-    </form>
-
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link rel="icon" href="{{asset('admin/image/logo_sitesi.png')}}">
+        <title>Dashboard - SB User</title>
+        <link href="{{asset('admin/css/card.css')}}" rel="stylesheet" />
+        <link href="{{asset('admin/css/styles.css')}}" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html">SITESI</a>
+            <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Cari ..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="login.html">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Menu Utama</div>
+                            <a class="nav-link" href="/user">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Beranda
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Pengaturan</div>
+                            <a class="nav-link" href="/biodata">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Biodata
+                            </a>
+                            <a class="nav-link" href="/history">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                History
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        User
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                  <form>
+                    <div class="form-group">
+                      <label for="exampleInputNik">NIK</label>
+                      <input type="text" class="form-control" id="exampleInputNik" aria-describedby="nik" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputNama">Nama</label>
+                      <input type="text" class="form-control" id="exampleInputNama" aria-describedby="nama" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleTglLahir">Tanggal Lahir</label>
+                      <input type="date" class="form-control" id="tgl_lahir" aria-describedby="tgl_lahir" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputJk">Jenis Kelamin</label>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline1">Pria</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline2">Wanita</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Alamat</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      <small id="alamat" class="form-text text-muted">Diisi sesuai KTP</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputMinat">Bidang Minat</label>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                          Musik
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                          Olahraga
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                        <label class="form-check-label" for="defaultCheck3">
+                          Menari
+                        </label>
+                      </div>
+                        <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                          Membaca
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                          Bermain Game 
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                          Fotografi
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                          Videografi
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                          Fashion
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                          Design
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                          Travelling
+                        </label>
+                      </div>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; SITESI 2020</div>
+                            
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="{{asset('admin/js/scripts.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/datatables-demo.js"></script>
+    </body>
 </html>

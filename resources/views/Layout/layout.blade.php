@@ -6,9 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="{{asset('admin/image/logo_sitesi.png')}}">
         <title>Dashboard - SB Admin</title>
         <link href="{{asset('admin/css/styles.css')}}" rel="stylesheet" />
+        <link href="{{asset('admin/css/dotbadge.css')}}" rel="stylesheet" />
+        <link href="{{asset('admin/js/dotbadge.js')}}" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -50,7 +55,7 @@
                                 Tambah Admin
                                 <div ></div>
                             </a>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="/tes" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Tes Psikolog
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -80,11 +85,6 @@
                             <a class="nav-link collapsed" href="#"  >
                                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                     Grafik
-                             </a>
-                            <div class="sb-sidenav-menu-heading">PENGATURAN</div>
-                            <a class="nav-link collapsed" href="#"  >
-                                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                    Account
                              </a>
                         </div>
                         

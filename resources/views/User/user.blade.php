@@ -9,6 +9,7 @@
         <title>Dashboard - SB User</title>
         <link href="{{asset('admin/css/card.css')}}" rel="stylesheet" />
         <link href="{{asset('admin/css/styles.css')}}" rel="stylesheet" />
+        <link rel="icon" href="{{asset('admin/image/logo_sitesi.png')}}">
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     </head>
@@ -51,9 +52,9 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Biodata
                             </a>
-                            <a class="nav-link" href="charts.html">
+                            <a class="nav-link" href="/history">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Account
+                                History
                             </a>
                         </div>
                     </div>
@@ -72,97 +73,24 @@
                         </ol>    
                     </div>
                     <main class="container">
-	            <article class="postcard blue">
-                <a class="postcard__img_link" href="#">
-                    <img class="postcard__img" src="admin/image/disc.jpg" alt="Image Title" />
-		        </a>
-                <div class="postcard__text">
-                    <h1>DISC</h1>
-                    <div class="postcard__bar"></div>
-                    <div class="postcard__preview-txt">Beberapa perusahan menggunakan metode ini untuk perekrutan dan kesesuaian terhadap pekerjaan. Tes psikologi ini akan fokus pada sifat-sifat dominasi, bujukan, pengajuan, dan kepatuhan. DISC juga dapat mendeteksi cara berkomunikasi, kepribadian, hingga tingkat stres.</div>
-                    <ul class="postcard__tagbox">
-                        <li class="tag__item play blue">
-                            <a href="#">Daftar</a>
-                        </li>
-                    </ul>
-                </div>
-                </article>
-                <article class="postcard red">
-                <a>
-                    <img class="postcard__img" src="admin/image/mbti.jfif" alt="Image Title" />	
-                </a>
-                <div class="postcard__text">
-                    <h1>Indikator Tipe Myer-Briggs (MBTI)</h1>
-                    <div class="postcard__bar"></div>
-                    <div class="postcard__preview-txt">Pemeriksaan kepribadian ini dilakukan atas dasar setiap orang memahami dunia melalui sensasi, intuisi, perasaan, dan pemikiran. MBTI akan memeriksa tiap individu menurut empat dimensi bipolar, yaitu : sikap, fungsi pengindraan, fungsi penilaian, dan prefensi gaya hidup</div>
-                    <ul class="postcard__tagbox">
-                        <li class="tag__item play red">
-                            <a href="#">Daftar</a>
-                        </li>
-                    </ul>
-		        </div>
-	            </article>
-                <article class="postcard green">
-                <a class="postcard__img_link" href="#">
-                    <img class="postcard__img" src="admin/image/wartegg.png" alt="Image Title" />
-                </a>
-                <div class="postcard__text">
-                    <h1>Wartegg</h1>
-                    <div class="postcard__bar"></div>
-                    <div class="postcard__preview-txt">Tes ini bertujuan untuk meneliti karakter kepribadian seseorang (mengeksplorasi) terutama dalam hal emosi, imajinasi, dinamisme, kontrol, dan fungsi realitas yang dimiliki oleh setiap orang, tetapi dengan tingkatan dan hubungan satu sama lain yang cukup berbeda.</div>
-                    <ul class="postcard__tagbox">
-                        <li class="tag__item play green">
-                            <a href="#">Daftar</a>
-                        </li>
-                    </ul>
-                </div>
-	            </article>
-                <article class="postcard yellow">
-                <a class="postcard__img_link" href="#">
-                    <img class="postcard__img" src="admin/image/analogi.jpg" alt="Image Title" />
-                </a>
-                <div class="postcard__text">
-                    <h1>Kemampaun Verbal</h1>
-                    <div class="postcard__bar"></div>
-                    <div class="postcard__preview-txt">Tes ini bertujuan untuk mengukur kemampuan dalam memahami, mengevaluasi secara kritis terkait dengan informasi tertulis, kecakapan, keterampilan, kecepatan, dan kebenaran mengolah kata atau untuk melihat cara berpikir seseorang dalam menggunakan kata-kata.</div>
-                    <ul class="postcard__tagbox">
-                        <li class="tag__item play yellow">
-                            <a href="#">Daftar</a>
-                        </li>
-                    </ul>
-                </div>
-                </article>
-                <article class="postcard green">
-                <a class="postcard__img_link" href="#">
-                    <img class="postcard__img" src="admin/image/numerik.png" alt="Image Title" />
-                </a>
-                <div class="postcard__text">
-                    <h1>Numerik</a></h1>
-                    <div class="postcard__bar"></div>
-                    <div class="postcard__preview-txt">Tes kemampuan numerik ada 3 jenis yaitu aljabar, aritmatika dan deret.</div>
-                    <ul class="postcard__tagbox">
-                        <li class="tag__item play green">
-                            <a href="#">Daftar</a>
-                        </li>
-                    </ul>
-                </div>
-	            </article>
-                <article class="postcard green">
-                <a class="postcard__img_link" href="#">
-                    <img class="postcard__img" src="admin/image/kraepelin.jpg" alt="Image Title" />
-                </a>
-                <div class="postcard__text">
-                    <h1 class="postcard__title green"><a href="#">Kraepelin</a></h1>
-                    <div class="postcard__bar"></div>
-                    <div class="postcard__preview-txt">Tes ini digunakan untuk mengukur atensi seseorang ketika mengerjakan suatu tugas. Adapun aspek yang diujikan dalam tes ini, yaitu : daya tahan, kemauan, emosi, penyesuaian diri, dan stabilitas diri.</div>
-                    <ul class="postcard__tagbox">
-                        <li class="tag__item play green">
-                            <a href="#">Daftar</a>
-                        </li>
-                    </ul>
-                </div>
-	            </article>
-                </main>
+                        @foreach($data_tes as $tes)
+                            <article class="postcard blue">
+                                <a class="postcard__img_link" href="#">
+                                    <img class="postcard__img" src="{{asset('images/'.$tes->gambar)}}" alt="Image Title" />
+                                </a>
+                                <div class="postcard__text">
+                                    <h1>{{$tes->namaTes}}</h1>
+                                    <div class="postcard__bar"></div>
+                                    <div class="postcard__preview-txt">{{$tes->keterangan}}</div>
+                                    <ul class="postcard__tagbox">
+                                        <li class="tag__item play blue">
+                                            <a href="{{route('viewiddaftar',['id_tes'=> $tes->id_tes])}}">Daftar</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </article>
+                        @endforeach
+                    </main>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">

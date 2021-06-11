@@ -95,51 +95,52 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="tambah">
-                        <form action="/tambah_jadwal">
-                            <button >Tambah Data</button>
+                        <form action="/listAdmin/tambah">
+                            <button class="btn btn-outline-success">Tambah Admin</button>
                         </form>
                     </div>
                     <tr>
                     <div class="card mb-4">
-                        <div class="card-body">
-                            @if(session('sukses'))
-                                <div class="alert alert-success" role="alert">
-                                    {{session('sukses')}}
-                                </div>
-                            @endif
+                    <div class="card-body">
+                         @if(session('sukses'))
+                    <div class="alert alert-success" role="alert">
+                        {{session('sukses')}}
+                    </div>
+                        @endif
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Jenis Tes</th>
-                                            <th>Tanggal Tes</th>
-                                            <th>Jam Mulai</th>
-                                            <th>Jam Selesai</th>
-                                            <th>Kapasitas</th>
-                                            <th></th>
-                                            <th></th>
+                                            <th>No</th>
+                                            <th>NIK</th>
+                                            <th>Nama</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>No HP</th>
+                                            <th>Action</th>
                                         </tr>
+                                        @php
+			                                $no = 1;	
+		                                @endphp
+		                                @foreach($data_admin as $admin)
                                     </thead>
-                                    @foreach($data_jadwal as $jadwal)
                                     <tbody>
                                         <tr>
-                                            <td>{{$jadwal->id_tes}}</td>
-                                            <td>{{$jadwal->tgl_tes}}</td>
-                                            <td>{{$jadwal->jam_mulai}}</td>
-                                            <td>{{$jadwal->jam_selesai}}</td>
-                                            <td>{{$jadwal->kapasitas}}</td>
+                                            <td>{{$no++}}</td>
+                                            <td>{{$admin->nik}}</td>
+                                            <td>{{$admin->nama}}</td>
+                                            <td>{{$admin->jk}}</td>
+                                            <td>{{$admin->hp}}</td>
                                             <td>
-                                            <a href="/editJadwal/{{$jadwal->id_jadwal}}"><button type="submit" class="btn btn-primary">Update</button></a>
-                                            <td>    
-                                            <a href="/deleteJadwal/{{$jadwal->id_jadwal}}"><button type="submit" class="btn btn-danger">Delete</button></a>
+                                            <a href="/editAdmin/{{$admin->id_admin}}"><button type="submit" class="btn btn-primary">Update</button></a>
+                                            <a href="/deleteAdmin/{{$admin->id_admin}}"><button type="submit" class="btn btn-danger">Delete</button></a>
                                             </td>
-                                        </tr>     
+                                        </tr>
+                                        @endforeach
                                     </tbody>
-                                    @endforeach
                                 </table>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </main>
             </div>
                 <footer class="py-4 bg-light mt-auto">
@@ -151,8 +152,6 @@
                 </footer>
             </div>
         </div>
-        @foreach ($data_tes as $tes)
-        @endforeach
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('admin/js/scripts.js')}}"></script>
@@ -163,5 +162,4 @@
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/datatables-demo.js"></script>
     </body>
-    
 </html>

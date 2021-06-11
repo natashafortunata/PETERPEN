@@ -16,7 +16,10 @@ class CreateJadwal extends Migration
         Schema::create('jadwal', function (Blueprint $table) {
             $table->increments('id_jadwal');
             $table->date ('tgl_tes');
-            $table->time ('jam');
+            $table->time ('jam_mulai');
+            $table->time ('jam_selesai');
+            $table->string ('kapasitas');
+            $table->string ('id_tes');
             $table->timestamps();
         });
     }

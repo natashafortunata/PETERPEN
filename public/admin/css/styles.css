@@ -10072,7 +10072,7 @@ body {
     transform: translateX(0);
   }
   #layoutSidenav #layoutSidenav_content {
-    margin-left: 50px;
+    margin-left: 30px;
     transition: margin 0.15s ease-in-out;
   }
 
@@ -10102,7 +10102,7 @@ body {
 }
 .sb-nav-fixed #layoutSidenav #layoutSidenav_content {
   padding-left: 225px;
-  top: 56px;
+  top: 20px;
 }
 
 #layoutError {
@@ -10247,4 +10247,8 @@ body {
 }
 .sb-sidenav-light .sb-sidenav-footer {
   background-color: #e9ecef;
+}
+.tambah{
+  margin-bottom: 25px;
+  margin-top: 30px;
 }

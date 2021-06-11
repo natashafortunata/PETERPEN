@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
+        <title>Admin</title>
+        <link rel="icon" href="{{asset('admin/image/logo_sitesi.png')}}">
         <link href="{{asset('admin/css/styles.css')}}" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
@@ -45,20 +46,20 @@
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">MENU UTAMA</div>
-                            <a class="nav-link collapsed" href="#">
+                            <a class="nav-link collapsed" href="/listAdmin">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Tambah Admin
                                 <div ></div>
                             </a>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="/tes" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Tes Psikolog
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Tambah Jenis Tes</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Tambah Jadwal</a>
+                                    <a class="nav-link" href="/tes">Tambah Jenis Tes</a>
+                                    <a class="nav-link" href="/jadwal">Tambah Jadwal</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -81,11 +82,6 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                     Grafik
                              </a>
-                            <div class="sb-sidenav-menu-heading">PENGATURAN</div>
-                            <a class="nav-link collapsed" href="#"  >
-                                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                    Account
-                             </a>
                         </div>
                         
                     </div>
@@ -98,107 +94,48 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <form action="/tambah_tes">
-                        <button>Tambah</button>
-                    </form>
+                    <div class="tambah">
+                        <form action="/tambah_tes">
+                            <button >Tambah Data</button>
+                        </form>
+                    </div>
                     <tr>
                     <div class="card mb-4">
                         <div class="card-body">
+                            @if(session('sukses'))
+                                <div class="alert alert-success" role="alert">
+                                    {{session('sukses')}}
+                                </div>
+                            @endif
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Jenis Tes</th>
-                                            <th>Kapasitas</th>
                                             <th>Harga</th>
+                                            <th>Keterangan</th>
+                                            <th><th>
+                                            
                                         </tr>
                                     </thead>
+                                    @foreach($data_tes as $tes)
                                     <tbody>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                        </tr>                                    
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brielle Williamson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>New York</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Herrod Chandler</td>
-                                            <td>Sales Assistant</td>
-                                            <td>San Francisco</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Rhona Davidson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>Tokyo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Colleen Hurst</td>
-                                            <td>Javascript Developer</td>
-                                            <td>San Francisco</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sonya Frost</td>
-                                            <td>Software Engineer</td>
-                                            <td>Edinburgh</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jena Gaines</td>
-                                            <td>Office Manager</td>
-                                            <td>London</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Quinn Flynn</td>
-                                            <td>Support Lead</td>
-                                            <td>Edinburgh</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Charde Marshall</td>
-                                            <td>Regional Director</td>
-                                            <td>San Francisco</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Haley Kennedy</td>
-                                            <td>Senior Marketing Designer</td>
-                                            <td>London</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tatyana Fitzpatrick</td>
-                                            <td>Regional Director</td>
-                                            <td>London</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Michael Silva</td>
-                                            <td>Marketing Designer</td>
-                                            <td>London</td>
-                                        </tr>    
+                                            <td>{{$tes->namaTes}}</td>
+                                            <td>{{$tes->harga}}</td>
+                                            <td>{{$tes->keterangan}}</td>
+                                            <td>
+                                            <a href="/editTes/{{$tes->id_tes}}"><button type="submit" class="btn btn-primary">Update</button></a>
+                                            <td>    
+                                            <a href="/deleteTes/{{$tes->id_tes}}"><button type="submit" class="btn btn-danger">Delete</button></a>
+                                            </td>
+                                        </tr>     
                                     </tbody>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div>  
                 </main>
             </div>
                 <footer class="py-4 bg-light mt-auto">
@@ -220,4 +157,5 @@
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/datatables-demo.js"></script>
     </body>
+    
 </html>

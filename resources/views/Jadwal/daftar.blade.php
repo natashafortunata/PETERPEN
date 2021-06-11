@@ -94,11 +94,7 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="tambah">
-                        <form action="/tambah_jadwal">
-                            <button >Tambah Data</button>
-                        </form>
-                    </div>
+                    
                     <tr>
                     <div class="card mb-4">
                         <div class="card-body">
@@ -111,13 +107,10 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Jenis Tes</th>
                                             <th>Tanggal Tes</th>
                                             <th>Jam Mulai</th>
                                             <th>Jam Selesai</th>
                                             <th>Kapasitas</th>
-                                            <th></th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     @foreach($data_jadwal as $jadwal)
@@ -127,12 +120,10 @@
                                             <td>{{$jadwal->tgl_tes}}</td>
                                             <td>{{$jadwal->jam_mulai}}</td>
                                             <td>{{$jadwal->jam_selesai}}</td>
-                                            <td>{{$jadwal->kapasitas}}</td>
+                                            <td>{{$jadwal->kapasitas}}
                                             <td>
-                                            <a href="/editJadwal/{{$jadwal->id_jadwal}}"><button type="submit" class="btn btn-primary">Update</button></a>
-                                            <td>    
-                                            <a href="/deleteJadwal/{{$jadwal->id_jadwal}}"><button type="submit" class="btn btn-danger">Delete</button></a>
-                                            </td>
+                                            <a href="/daftar"><button type="submit" class="btn btn-primary">Daftar</button></a>
+                                            <td>
                                         </tr>     
                                     </tbody>
                                     @endforeach

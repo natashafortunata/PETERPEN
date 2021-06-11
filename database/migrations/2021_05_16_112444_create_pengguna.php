@@ -14,7 +14,7 @@ class CreatePengguna extends Migration
     public function up()
     {
         Schema::create('pengguna', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id_user');
             $table->string ('nik');
             $table->string ('nama');
             $table->string ('jk');

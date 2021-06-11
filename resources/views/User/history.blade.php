@@ -7,10 +7,10 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <link rel="icon" href="{{asset('admin/image/logo_sitesi.png')}}">
-        <title>Dashboard - SB Admin</title>
+        <title>Dashboard - SB User</title>
+        <link href="{{asset('admin/css/card.css')}}" rel="stylesheet" />
         <link href="{{asset('admin/css/styles.css')}}" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -42,97 +42,84 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <a class="nav-link" href="/admin_test">
+                            <div class="sb-sidenav-menu-heading">Menu Utama</div>
+                            <a class="nav-link" href="/user">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
+                                Beranda
                             </a>
-                            <div class="sb-sidenav-menu-heading">MENU UTAMA</div>
-                            <a class="nav-link collapsed" href="/listAdmin">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Tambah Admin
-                                <div ></div>
-                            </a>
-                            <a class="nav-link collapsed" href="/tes" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Tes Psikolog
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/tambah_tes">Tambah Jenis Tes</a>
-                                    <a class="nav-link" href="/tambah_jadwal">Tambah Jadwal</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-sidenav-menu-heading">Pengaturan</div>
+                            <a class="nav-link" href="/biodata">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Verifikasi Data
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                Biodata
                             </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Jadwal 
-                                    </a>
-        
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Pembayaran
-                                    </a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#"  >
-                                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                    Grafik
-                             </a>
+                            <a class="nav-link" href="/history">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                History
+                            </a>
                         </div>
-                        
                     </div>
-                    
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Admin 
+                        User
                     </div>
-                    
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <form action="/jadwal/tambah" method="post">
-                        {{ csrf_field() }}
+                    <form>
+                        <h4> KONFIRMASI PEMBAYARAN </h4>
+                        <br>
                         <div class="form-group">
-                            <label for="exampleJenisTes">Jenis Tes</label>
-                            <br>
-                            <select name="id_tes" id="exampleJenisTes">
-                                @foreach ($data_tes as $tes)
-                                    <option class="form-control" value={{$tes->id_tes}}>{{$tes->namaTes}}</option>
-                                @endforeach
+                            <label for="examplePengirim">Nama Pengirim</label>
+                            <input type="text" class="form-control" id="examplePengirim" aria-describedby="pengirim" placeholder="">
+                            <small id="pengirim" class="form-text text-muted">*sesuai nama di rekening pengirim</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleBank">Bank</label>
+                            <select class="custom-select">
+                                <option value="1">BCA</option>
+                                <option value="2">BNI</option>
+                                <option value="3">BRI</option>
                             </select>
                         </div>
                         <div class="form-group">
-                                <label for="tgl_tes">Tanggal Tes</label>
-                                <input class="form-control" type="date" name="tgl_tes">
+                            <label for="exampleTgl_kirim">Tanggal Kirim</label>
+                            <input type="date" class="form-control" id="tgl_kirim" aria-describedby="tgl_kirim" placeholder="">
                         </div>
                         <div class="form-group">
-                                <label for="jam_mulai">Jam Mulai</label>
-                                <input class="form-control" type="time" name="jam_mulai">
+                            <label for="exampleFile">Bukti Pembayaran</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
                         </div>
-                        <div class="form-group">
-                                <label for="jam_selesai">Jam Selesai</label>
-                                <input class="form-control" type="time" name="jam_selesai">
-                        </div>
-                        <div class="form-group">
-                                <label for="kapasitas">Kapasitas</label>
-                                <input class="form-control" type="text" name="kapasitas">
-                        </div>
-                        <div class="form-group">
-                                <input class="btn btn-primary" type="submit" value="Simpan">
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Konfirmasi</button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">1 Langkah Lagi !</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        SITESI sedang melakukan pengecekan bukti pembayaran Anda.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="/user" button type="button" class="btn btn-primary" data-dismiss="modal">OK !</button></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </main>
-            </div>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; SITESI 2021</div>
+                            <div class="text-muted">Copyright &copy; SITESI 2020</div>
                             
                         </div>
                     </div>

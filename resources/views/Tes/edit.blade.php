@@ -6,10 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <link rel="icon" href="{{asset('admin/image/logo_sitesi.png')}}">
         <title>Dashboard - SB Admin</title>
         <link href="{{asset('admin/css/styles.css')}}" rel="stylesheet" />
+        <link rel="icon" href="{{asset('admin/image/logo_sitesi.png')}}">
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -58,8 +59,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/tes">Tambah Jenis Tes</a>
-                                    <a class="nav-link" href="/jadwal">Tambah Jadwal</a>
+                                    <a class="nav-link" href="/tambah_tes">Tambah Jenis Tes</a>
+                                    <a class="nav-link" href="/tambah_jadwal">Tambah Jadwal</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -83,9 +84,7 @@
                                     Grafik
                              </a>
                         </div>
-                        
                     </div>
-                    
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
                         Admin 
@@ -94,65 +93,37 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="tambah">
-                        <form action="/tambah_jadwal">
-                            <button >Tambah Data</button>
-                        </form>
-                    </div>
-                    <tr>
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            @if(session('sukses'))
-                                <div class="alert alert-success" role="alert">
-                                    {{session('sukses')}}
-                                </div>
-                            @endif
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Jenis Tes</th>
-                                            <th>Tanggal Tes</th>
-                                            <th>Jam Mulai</th>
-                                            <th>Jam Selesai</th>
-                                            <th>Kapasitas</th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    @foreach($data_jadwal as $jadwal)
-                                    <tbody>
-                                        <tr>
-                                            <td>{{$jadwal->id_tes}}</td>
-                                            <td>{{$jadwal->tgl_tes}}</td>
-                                            <td>{{$jadwal->jam_mulai}}</td>
-                                            <td>{{$jadwal->jam_selesai}}</td>
-                                            <td>{{$jadwal->kapasitas}}</td>
-                                            <td>
-                                            <a href="/editJadwal/{{$jadwal->id_jadwal}}"><button type="submit" class="btn btn-primary">Update</button></a>
-                                            <td>    
-                                            <a href="/deleteJadwal/{{$jadwal->id_jadwal}}"><button type="submit" class="btn btn-danger">Delete</button></a>
-                                            </td>
-                                        </tr>     
-                                    </tbody>
-                                    @endforeach
-                                </table>
-                            </div>
+                    <form action="/editTes/{{$data_tes->id_tes}}" method="post">
+                    {{ csrf_field() }}
+                    {{ method_field('put') }}
+                        <div class="form-group">
+                                <label for="nama">Jenis Tes</label>
+                                <input class="form-control" type="text" name="namaTes" value="{{$data_tes->namaTes}}">
                         </div>
-                    </div>  
+                        <div class="form-group">
+                                <label for="harga">Harga</label>
+                                <input class="form-control" type="text" name="harga" value="{{$data_tes->harga}}">
+                        </div>
+                        <div class="form-group">
+                                <label for="harga">Keterangan</label>
+                                <input class="form-control" type="text" name="keterangan" value="{{$data_tes->keterangan}}">
+                        </div>
+                        <div class="form-group">
+                                <input class="btn btn-primary" type="submit" value="Simpan">
+                        </div>
+                    </form>
                 </main>
             </div>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; SITESI 2021</div>    
+                            <div class="text-muted">Copyright &copy; SITESI 2021</div>
+                            
                         </div>
                     </div>
                 </footer>
             </div>
         </div>
-        @foreach ($data_tes as $tes)
-        @endforeach
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('admin/js/scripts.js')}}"></script>
@@ -163,5 +134,4 @@
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/datatables-demo.js"></script>
     </body>
-    
 </html>

@@ -18,6 +18,7 @@ class CreateTes extends Migration
             $table->string ('namaTes');
             $table->integer ('harga');
             $table->string ('keterangan');
+            $table->string ('gambar');
             $table->timestamps();
         });
     }
