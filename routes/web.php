@@ -60,6 +60,7 @@ Route::post('/daftar/pilih','pendaftaranController@pilihJadwal');
 Route::get('/verJadwal', 'VerifController@verJadwal');
 Route::get('/verBayar','VerifController@verBayar');
 Route::post('/verJadwal/pilih', 'VerifController@verifikasiTenan');
+Route::post('/verBayar/pilih', 'VerifController@verifBayarTenan');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

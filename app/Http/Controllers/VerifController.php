@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\jadwal;
 use App\pendaftaran;
+use App\detailTransaksi;
+use App\transaksi;
 use DB;
 
 class VerifController extends Controller
@@ -24,8 +26,16 @@ class VerifController extends Controller
 
 
 
-
     public function verBayar(){
-        return view('verifikasi.verBayar');
+        $ver = transaksi::all();
+        return view('verifikasi.verBayar', compact('ver'));
+    }
+
+    public function verifBayarTenan(Request $req){
+        transaksi::where('id_trx', $req->get('id_trx'))->update([
+            'status' => $req->get('status'),
+            'link_tes' => $req->get('link_tes'),
+    ]);
+        return redirect('/verBayar');
     }
 }

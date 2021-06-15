@@ -137,7 +137,6 @@
                                         <td>{{DB::table('jadwal')->where('id_jadwal', $daftar['id_jadwal'])->value('jam_mulai')}}</td>
                                         <td>{{DB::table('jadwal')->where('id_jadwal', $daftar['id_jadwal'])->value('jam_selesai')}}</td>
                                         @if($daftar->status == 0)
-
                                         <td>Menunggu</td>
                                         @elseif($daftar->status == 1)
                                         <td>Diterima</td>

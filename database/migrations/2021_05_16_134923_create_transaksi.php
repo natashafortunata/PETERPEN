@@ -20,7 +20,9 @@ class CreateTransaksi extends Migration
             $table->string ('bank');
             $table->string ('total');
             $table->string ('bukti_bayar');
-            $table->string('id_daftar');
+            $table->string('link_tes');
+            $table->string('status');
+            $table->integer('id_daftar');
             $table->timestamps();
         });
     }

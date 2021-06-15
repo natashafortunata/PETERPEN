@@ -78,40 +78,43 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <form>
                         <h4> KONFIRMASI PEMBAYARAN </h4>
                         <br>
-                        <form action="/bayar/berhasil" method="post" enctype="multipart/form-data">
+                        <form action="/bayar/berhasil" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <div>
-                        <label for="nama_rek">Nama Pengirim</label>
-                            <input type="text" class="form-control" id="nama_rek" aria-describedby="pengirim" placeholder="">
-                            <small id="pengirim" class="form-text text-muted">*sesuai nama di rekening pengirim</small>
+                        <div class="form-group">
+                                <label for="exampleInputEmail1">No Pendaftaran</label>
+                                @foreach($data_daf as $data)
+                                <input class="form-control" value={{$data->id_daftar}} type="text" name="id_daftar" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                                @endforeach
                         </div>
                         <div class="form-group">
-                                <label for="tgl_kirim">Tanggal Kirim</label>
+                                <label for="exampleInputEmail1">Nama Pengirim</label>
+                                <input class="form-control" type="text" name="nama_rek" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                        </div>
+                        <div class="form-group">
+                                <label for="tgl_kirim">Tanggal Pembayaran</label>
                                 <input class="form-control" type="date" name="tgl_kirim">
                         </div>
                         <div class="form-group">
-                            <label for="exampleBank">Bank</label>
-                            <select class="custom-select">
-                                <option value="BCA">BCA</option>
-                                <option value="BNI">BNI</option>
-                                <option value="BRI">BRI</option>
+                            <label for="exampleBank">Pilih Bank</label>
+                            <br>
+                            <select name="bank" id="exampleBank">
+                                    <option class="form-control" value="BCA">BCA</option>
+                                    <option class="form-control" value="BRI">BRI</option>
+                                    <option class="form-control" value="BNI">BNI</option>
                             </select>
                         </div>
-                        <div>
-                        <label for="exampleTotal">Total Bayar</label>
-                            @foreach ($data_index as $data)
-                            <input type="text" class="form-control" value="{{$data->id_daftar}}{{$data->harga}}">
-                            @endforeach
+                        <div class="form-group">
+                                <label for="exampleInputEmail1">Total Pembayaran</label>
+                                @foreach($data_index as $data)
+                                <input class="form-control" type="text" value={{$data->id_daftar}}{{$data->harga}} name="total" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                                @endforeach
                         </div>
                         <div class="form-group">
-                                <label for="file_bayar">Bukti Bayar</label>
-                                <input class="form-control" type="file" name="file_bayar">
+                                <label for="bukti_bayar">Upload Bukti Pembayaran</label>
+                                <input class="form-control" type="file" name="bukti_bayar">
                         </div>
-                        
-                        <br>
                         <div class="form-group">
                                 <input class="btn btn-primary" type="submit" value="Simpan">
                         </div>

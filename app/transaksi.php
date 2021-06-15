@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class transaksi extends Model
 {
     protected $table = 'transaksi';
-    protected $fillable = ['nama_rek','tgl_kirim','bank', 'total', 'bukti_bayar','id_daftar'];
+    protected $fillable = ['nama_rek','tgl_kirim','bank', 'total', 'bukti_bayar','link_tes','status','id_daftar'];
     protected $primaryKey = 'id_trx';
 
     //relasi dr tabel mana

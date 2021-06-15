@@ -121,37 +121,53 @@
                                             <th>Tgl Bayar</th>
                                             <th>Nama Pengirim</th>
                                             <th>Nama Bank</th>
-                                            <th>Image</th>
+                                            <th>Link Tes</th>
                                             <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        @php
-			                                $no = 1;	
-		                                @endphp
+                                            <th colspan="2" style="text-align:center;">Action</th>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>{{$no++}}</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <div>
-                                                <td>
-                                                <select >
-                                                    <option>Terima</option>
-                                                    <option>Tolak</option>
-                                                </select >
-                                                </td>
-                                            </div>
-                                            <div>
-                                            <td>
-                                                <button type="submit" class="btn btn-primary">Lihat</button>
-                                                <button type="submit" class="btn btn-success">Simpan</button>
-                                            </td>
-                                            </div>
-                                        </tr>
+                                    @foreach($ver as $daftar)
+                                    <tbody>
+                                    <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{DB::table('users')->where('id', $daftar['id_daftar'])->value('name')}}</td>
+                                            <td>{{DB::table('transaksi')->where('id_trx', $daftar['id_trx'])->value('tgl_kirim')}}</td>
+                                            <td>{{DB::table('transaksi')->where('id_trx', $daftar['id_trx'])->value('nama_rek')}}</td>
+                                            <td>{{DB::table('transaksi')->where('id_trx', $daftar['id_trx'])->value('bank')}}</td>
+                                            @if($daftar->link_tes == 0)
+                                            <td>Mohon menunggu konfirmasi</td>
+                                            @elseif($daftar->link_tes == 1)
+                                            <td><a href="www.link_tes.com">www.link_tes.com</a></td>
+                                            @else
+                                            <td>Batal</td>
+                                            @endif
+
+                                            @if($daftar->status == 0)
+                                            <td>Menunggu</td>
+                                            @elseif($daftar->status == 1)
+                                            <td>Sukses</td>
+                                            @else
+                                            <td>Gagal</td>
+                                            @endif
+                                    <td><form method="post" action="/verBayar/pilih">
+                                    @csrf
+                                                <input type="hidden" name="id_trx" value="{{$daftar->id_trx}}">
+                                                <input type="hidden" name="status" value="1">
+                                                <input type="hidden" name="link_tes" value="1">
+                                                <button type="submit" class="btn btn-success">Terima</button></a>
+                                                </form>
+                                    </td>
+                                    <td><form method="post" action="/verBayar/pilih">
+                                    @csrf
+                                                <input type="hidden" name="status" value="2">
+                                                <input type="hidden" name="link_tes" value="2">
+                                                <input type="hidden" name="id_trx" value="{{$daftar->id_trx}}">
+                                                <button type="submit" class="btn btn-danger"> Tolak </button>
+                                                </form>
+                                    </td>
+                                    </tr>     
+                                    </tbody>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

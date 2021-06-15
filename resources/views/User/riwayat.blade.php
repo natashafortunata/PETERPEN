@@ -88,7 +88,7 @@
                                 <th>Jam Mulai</th>
                                 <th>Jam Selesai</th>
                                 <th>Status</th>
-                                <th > Action </th>
+                                <th>Action</th>
                                 
                             </tr>
                         </thead>
@@ -101,15 +101,15 @@
                                         <td>{{DB::table('jadwal')->where('id_jadwal', $daftar['id_jadwal'])->value('jam_selesai')}}</td>
                                         @if($daftar->status == 0)
                                         <td>Menunggu</td>
+                                        <td><button type="button" class="btn btn-dark" disabled>Menunggu</button></td>
                                         @elseif($daftar->status == 1)
                                         <td>Diterima</td>
+                                        <td>
+                                        <a href="/pembayaran"><button type="submit" class="btn btn-success">Bayar</button></a></td>
                                         @else
                                         <td>Ditolak</td>
+                                        <td><button type="button" class="btn btn-danger" disabled>Gagal</button></td>
                                         @endif
-                                        <td>
-                                        <a href="/pembayaran">
-                                        <button type="submit" class="btn btn-dark">Bayar</button></a>
-                                        </td>
                                         
                                     </tr>     
                                 </tbody>
