@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <link rel="icon" href="{{asset('admin/image/logo_sitesi.png')}}">
         <title>Dashboard - SB Admin</title>
         <link href="{{asset('admin/css/styles.css')}}" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -31,7 +30,18 @@
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        @guest
+
+                        @else
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                            </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                        </form>
+                        @endguest
                     </div>
                 </li>
             </ul>
@@ -46,20 +56,20 @@
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">MENU UTAMA</div>
-                            <a class="nav-link collapsed" href="/listAdmin">
+                            <a class="nav-link collapsed" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Tambah Admin
                                 <div ></div>
                             </a>
-                            <a class="nav-link collapsed" href="/tes" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Tes Psikolog
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/tes">Tambah Jenis Tes</a>
-                                    <a class="nav-link" href="/jadwal">Tambah Jadwal</a>
+                                    <a class="nav-link" href="layout-static.html">Tambah Jenis Tes</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">Tambah Jadwal</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -69,18 +79,18 @@
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Jadwal 
-                                    </a>
-        
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Pembayaran
-                                    </a>
+                                    <a class="nav-link" href="/verJadwal">Jadwal</a>
+                                    <a class="nav-link" href="/verBayar">Transaksi</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#"  >
                                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                     Grafik
+                             </a>
+                            <div class="sb-sidenav-menu-heading">PENGATURAN</div>
+                            <a class="nav-link collapsed" href="#"  >
+                                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                    Account
                              </a>
                         </div>
                         
@@ -94,43 +104,59 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    
                     <tr>
                     <div class="card mb-4">
-                        <div class="card-body">
-                            @if(session('sukses'))
-                                <div class="alert alert-success" role="alert">
-                                    {{session('sukses')}}
-                                </div>
-                            @endif
+                    <div class="card-body">
+                         @if(session('sukses'))
+                    <div class="alert alert-success" role="alert">
+                        {{session('sukses')}}
+                    </div>
+                        @endif
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Tanggal Tes</th>
-                                            <th>Jam Mulai</th>
-                                            <th>Jam Selesai</th>
-                                            <th>Kapasitas</th>
+                                            <th>No</th>
+                                            <th>Nama Peserta</th>
+                                            <th>Tgl Bayar</th>
+                                            <th>Nama Pengirim</th>
+                                            <th>Nama Bank</th>
+                                            <th>Image</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
+                                        @php
+			                                $no = 1;	
+		                                @endphp
                                     </thead>
-                                    @foreach($data_jadwal as $jadwal)
                                     <tbody>
                                         <tr>
-                                            <td>{{$jadwal->id_tes}}</td>
-                                            <td>{{$jadwal->tgl_tes}}</td>
-                                            <td>{{$jadwal->jam_mulai}}</td>
-                                            <td>{{$jadwal->jam_selesai}}</td>
-                                            <td>{{$jadwal->kapasitas}}
+                                            <td>{{$no++}}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <div>
+                                                <td>
+                                                <select >
+                                                    <option>Terima</option>
+                                                    <option>Tolak</option>
+                                                </select >
+                                                </td>
+                                            </div>
+                                            <div>
                                             <td>
-                                            <a href="/daftar"><button type="submit" class="btn btn-primary">Daftar</button></a>
-                                            <td>
-                                        </tr>     
+                                                <button type="submit" class="btn btn-primary">Lihat</button>
+                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                            </td>
+                                            </div>
+                                        </tr>
                                     </tbody>
-                                    @endforeach
                                 </table>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </main>
             </div>
                 <footer class="py-4 bg-light mt-auto">
@@ -142,8 +168,6 @@
                 </footer>
             </div>
         </div>
-        @foreach ($data_tes as $tes)
-        @endforeach
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('admin/js/scripts.js')}}"></script>
@@ -154,5 +178,4 @@
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/datatables-demo.js"></script>
     </body>
-    
 </html>

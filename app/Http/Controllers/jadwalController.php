@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\jadwal;
 use App\tes;
-
+use DB;
 class jadwalController extends Controller
 {
     public function viewJadwal(){

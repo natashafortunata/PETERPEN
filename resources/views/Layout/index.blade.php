@@ -31,7 +31,18 @@
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        @guest
+
+                    @else
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                        </form>
+                    @endguest
                     </div>
                 </li>
             </ul>
@@ -69,13 +80,8 @@
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Jadwal 
-                                    </a>
-        
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Pembayaran
-                                    </a>
+                                    <a class="nav-link" href="/verJadwal">Jadwal</a>
+                                    <a class="nav-link" href="/verBayar">Transaksi</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#"  >
@@ -96,7 +102,7 @@
                 <main>
                     <div class="tambah">
                         <form action="/listAdmin/tambah">
-                            <button class="btn btn-outline-success">Tambah Admin</button>
+                            <button class="btn btn-outline-dark">Tambah Admin</button>
                         </form>
                     </div>
                     <tr>
@@ -111,12 +117,12 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>NIK</th>
-                                            <th>Nama</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>No HP</th>
-                                            <th>Action</th>
+                                            <th style="text-align:center;">No</th>
+                                            <th style="text-align:center;">NIK</th>
+                                            <th style="text-align:center;">Nama</th>
+                                            <th style="text-align:center;">Jenis Kelamin</th>
+                                            <th style="text-align:center;">No HP</th>
+                                            <th colspan="2" style="text-align:center;"> Action </th>
                                         </tr>
                                         @php
 			                                $no = 1;	
@@ -132,6 +138,7 @@
                                             <td>{{$admin->hp}}</td>
                                             <td>
                                             <a href="/editAdmin/{{$admin->id_admin}}"><button type="submit" class="btn btn-primary">Update</button></a>
+                                            <td>
                                             <a href="/deleteAdmin/{{$admin->id_admin}}"><button type="submit" class="btn btn-danger">Delete</button></a>
                                             </td>
                                         </tr>

@@ -8,9 +8,9 @@
         <meta name="author" content="" />
         <link rel="icon" href="{{asset('admin/image/logo_sitesi.png')}}">
         <title>Dashboard - SB User</title>
+        <link href="{{asset('admin/css/card.css')}}" rel="stylesheet" />
         <link href="{{asset('admin/css/styles.css')}}" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -32,7 +32,19 @@
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        <a class="dropdown-item" href="/biodata">Biodata</a>
+                        @guest
+
+                        @else
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                        </form>
+                        @endguest
                     </div>
                 </li>
             </ul>
@@ -48,13 +60,13 @@
                                 Beranda
                             </a>
                             <div class="sb-sidenav-menu-heading">Pengaturan</div>
-                            <a class="nav-link" href="/biodata">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Biodata
-                            </a>
                             <a class="nav-link" href="/history">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 History
+                            </a>
+                            <a class="nav-link" href="/pembayaran">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Pembayaran
                             </a>
                         </div>
                     </div>
@@ -75,7 +87,7 @@
                                 <th>Jam Mulai</th>
                                 <th>Jam Selesai</th>
                                 <th>Kapasitas</th>
-                                <th>Daftar</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                             @foreach($data_jadwal as $jadwal)
@@ -84,13 +96,15 @@
                                         <td>{{$jadwal->tgl_tes}}</td>
                                         <td>{{$jadwal->jam_mulai}}</td>
                                         <td>{{$jadwal->jam_selesai}}</td>
-                                        <td>{{$jadwal->kapasitas}}
-                                        <td>
-                                        <form method="post" action="{{url'}}">
+                                        <td>{{$jadwal->kapasitas}}</td>
+                                        <form method="post" action="/daftar/pilih">
                                         @csrf
-                                            <a href='/daftar'><button type="submit" class="btn btn-primary">Daftar</button></a>  
+                                            <input type="hidden" name="id_daftar" value="{{$jadwal['id_daftar']}}">
+                                                <input type="hidden" name="id_tes" value="{{$jadwal['id_tes']}}">
+                                                <input type="hidden" name="id_jadwal" value="{{$jadwal['id_jadwal']}}">
+                                            <td><button type="submit" class="btn btn-success">Daftar Tes</button></td>
                                         </form>
-                                        </td>
+                                        
                                     </tr>     
                                 </tbody>
                             @endforeach

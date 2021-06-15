@@ -11,10 +11,6 @@ class adminController extends Controller
         return view('Layout.layout');
     }
 
-    public function login(){
-        return view('Layout.login');
-    }
-
     public function viewAdmin(){
         $data_admin = admin::all();//menampilkan semua atribut yang sudah di seleksi di model
         return view('Layout.index',compact('data_admin'));

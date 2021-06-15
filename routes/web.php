@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
+
+//LOGIN
+Route::get('/Login', 'loginController@viewLogin');
+
+//ADMIN
 Route::get('/admin_test','adminController@view');
-Route::get('/login_admin','adminController@login');
 Route::get('/listAdmin','adminController@viewAdmin');
 Route::get('/listAdmin/tambah','adminController@viewInputAdmin');
 Route::post('/listAdmin/simpan','adminController@tambahAdmin');
@@ -25,11 +29,16 @@ Route::get('/editAdmin/{id_admin}','adminController@findEdit');
 Route::put('/updateAdmin/{id_admin}', 'adminController@editAdmin');
 Route::get('/deleteAdmin/{id_admin}', 'adminController@deleteAdmin');
 
+//USER
 Route::get('/user','userController@viewDataTes');
 Route::get('/biodata','userController@biodata');
+Route::post('/user/biodata','bioController@inputBio');
 Route::get('/daftar/{id_tes}','userController@viewDaftar')->name('viewiddaftar');
-Route::get('/history','userController@viewHistory');
+Route::get('/pembayaran','transaksiController@indexTrx');
+Route::get('/riwayat','pendaftaranController@viewPilih');
+Route::post('/bayar/berhasil','transaksiController@tambahTransaksi');
 
+//TES
 Route::get('/tes','tesController@viewTes');
 Route::get('/tambah_tes','tesController@viewInputTes');
 Route::post('/tes/tambah','tesController@tambahTes');
@@ -37,10 +46,20 @@ Route::get('/editTes/{id_tes}','tesController@findEdit');
 Route::put('/editTes/{id_tes}', 'tesController@editTes');
 Route::get('/deleteTes/{id_tes}', 'tesController@deleteTes');
 
+//JADWAL
 Route::get('/jadwal','jadwalController@viewJadwal');
 Route::get('/tambah_jadwal','jadwalController@viewInputJadwal');
 Route::post('/jadwal/tambah','jadwalController@tambahJadwal');
 Route::get('/editJadwal/{id_jadwal}','jadwalController@findEdit');
 Route::put('/editJadwal/{id_jadwal}', 'jadwalController@editJadwal');
 Route::get('/deleteJadwal/{id_jadwal}', 'jadwalController@deleteJadwal');
-Route::post('/daftar/{id_detil}','detilController@daftar');
+Route::post('/daftar/pilih','pendaftaranController@pilihJadwal');
+
+
+//verifikasi untuk admin
+Route::get('/verJadwal', 'VerifController@verJadwal');
+Route::get('/verBayar','VerifController@verBayar');
+Route::post('/verJadwal/pilih', 'VerifController@verifikasiTenan');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

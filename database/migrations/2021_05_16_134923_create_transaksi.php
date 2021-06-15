@@ -22,8 +22,7 @@ class CreateTransaksi extends Migration
             $table->string ('file_bayar');
             $table->string ('status');
             $table->string ('link_tes')->nullable();
-            $table->string('id_detail');
-            $table->string('id');
+            $table->string('id_daftar');
             $table->string('id_admin');
             $table->timestamps();
         });
