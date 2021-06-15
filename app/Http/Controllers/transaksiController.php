@@ -49,7 +49,7 @@ class transaksiController extends Controller
             'id_daftar'=>$request->id_daftar
         );
         transaksi::create($insert_data);
-        return redirect('/user')->with('Sukses','Pembayaran berhasil! Mohon menunggu konfirmasi dari Admin');
+        return redirect('/riwayat')->with('sukses','Pembayaran berhasil! Mohon menunggu konfirmasi dari Admin');
     }
 
 }

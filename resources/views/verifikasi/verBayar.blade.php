@@ -107,11 +107,7 @@
                     <tr>
                     <div class="card mb-4">
                     <div class="card-body">
-                         @if(session('sukses'))
-                    <div class="alert alert-success" role="alert">
-                        {{session('sukses')}}
-                    </div>
-                        @endif
+                         
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -135,7 +131,7 @@
                                             <td>{{DB::table('transaksi')->where('id_trx', $daftar['id_trx'])->value('nama_rek')}}</td>
                                             <td>{{DB::table('transaksi')->where('id_trx', $daftar['id_trx'])->value('bank')}}</td>
                                             @if($daftar->link_tes == 0)
-                                            <td>Mohon menunggu konfirmasi</td>
+                                            <td>Lakukan Konfirmasi</td>
                                             @elseif($daftar->link_tes == 1)
                                             <td><a href="www.link_tes.com">www.link_tes.com</a></td>
                                             @else

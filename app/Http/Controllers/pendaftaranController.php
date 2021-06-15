@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\pendaftaran;
+use App\transaksi;
 use DB;
 use Auth;
 
@@ -26,8 +27,9 @@ class pendaftaranController extends Controller
         $data_view= pendaftaran::where([
             ['id_user', '=', $auth],
             ])->get();
+        $verTrx = transaksi::all();
         //$data_view = pendaftaran::all();
         //$data_view = DB::table('jadwal')->join('pendaftaran','jadwal.id_jadwal','=','pendaftaran.id_daftar')->get();
-        return view('User.riwayat',compact('data_view'));
+        return view('User.riwayat',compact('data_view','verTrx'));
     }
 }

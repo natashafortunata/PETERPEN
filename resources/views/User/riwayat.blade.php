@@ -110,10 +110,55 @@
                                         <td>Ditolak</td>
                                         <td><button type="button" class="btn btn-danger" disabled>Gagal</button></td>
                                         @endif
-                                        
                                     </tr>     
                                 </tbody>
                             @endforeach
+                    </table>
+                    @if(session('sukses'))
+                    <div class="alert alert-success" role="alert">
+                        {{session('sukses')}}
+                    </div>
+                        @endif
+                        <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Tgl Bayar</th>
+                                            <th>Nama Pengirim</th>
+                                            <th>Nama Bank</th>
+                                            <th>Total Bayar</th>
+                                            <th>Status</th>
+                                            <th>Link Tes</th>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($verTrx as $daftar)
+                                    <tbody>
+                                    <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{DB::table('transaksi')->where('id_trx', $daftar['id_trx'])->value('tgl_kirim')}}</td>
+                                            <td>{{DB::table('transaksi')->where('id_trx', $daftar['id_trx'])->value('nama_rek')}}</td>
+                                            <td>{{DB::table('transaksi')->where('id_trx', $daftar['id_trx'])->value('bank')}}</td>
+                                            <td>{{DB::table('transaksi')->where('id_trx', $daftar['id_trx'])->value('total')}}</td>
+                                            @if($daftar->status == 0)
+                                            <td><button type="button" class="btn btn-dark" disabled>Mohon Menunggu</button></td>
+                                            @elseif($daftar->status == 1)
+                                            <td><button type="button" class="btn btn-success"disabled>Berhasil</button></td>
+                                            @else
+                                            <td><a href="/pembayaran"><button type="button" class="btn btn-danger">Ulangi Pembayaran</button></a></td>
+                                            @endif
+
+                                            @if($daftar->link_tes == 0)
+                                            <td>Menunggu konfirmasi</td>
+                                            @elseif($daftar->link_tes == 1)
+                                            <td><a href="www.link_tes.com"><button type="button" class="btn btn-info">Menuju Link</button></a></td>
+                                            @else
+                                            <td>Batal</td>
+                                            @endif                         
+                                    </tbody>
+                                    @endforeach
+                                </table>
+                            </div>
                     </table>
                 </main>
             </div>
