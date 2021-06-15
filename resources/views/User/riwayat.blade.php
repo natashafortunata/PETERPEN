@@ -88,9 +88,8 @@
                                 <th>Jam Mulai</th>
                                 <th>Jam Selesai</th>
                                 <th>Status</th>
-                                @if(DB::table('pendaftaran')->where('status', '=', '1')->value('status'))
                                 <th > Action </th>
-                                @endif
+                                
                             </tr>
                         </thead>
                             @foreach($data_view as $daftar)

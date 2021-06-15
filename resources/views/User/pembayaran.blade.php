@@ -84,8 +84,8 @@
                         <form action="/bayar/berhasil" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div>
-                        <label for="examplePengirim">Nama Pengirim</label>
-                            <input type="text" class="form-control" id="examplePengirim" aria-describedby="pengirim" placeholder="">
+                        <label for="nama_rek">Nama Pengirim</label>
+                            <input type="text" class="form-control" id="nama_rek" aria-describedby="pengirim" placeholder="">
                             <small id="pengirim" class="form-text text-muted">*sesuai nama di rekening pengirim</small>
                         </div>
                         <div class="form-group">
@@ -102,7 +102,9 @@
                         </div>
                         <div>
                         <label for="exampleTotal">Total Bayar</label>
-                            <input type="text" class="form-control" id="exampleTotal" aria-describedby="total" placeholder="">
+                            @foreach ($data_index as $data)
+                            <input type="text" class="form-control" value="{{$data->id_daftar}}{{$data->harga}}">
+                            @endforeach
                         </div>
                         <div class="form-group">
                                 <label for="file_bayar">Bukti Bayar</label>

@@ -22,7 +22,7 @@ class jadwalController extends Controller
 
     public function tambahJadwal(Request $request){
         \App\jadwal::create($request->all());
-        return redirect('/jadwal')->with('sukses','Data jadwal berhasil diubah !');;
+        return redirect('/jadwal')->with('sukses','Data jadwal berhasil ditambahkan !');;
     }
 
     public function findEdit($id_jadwal){

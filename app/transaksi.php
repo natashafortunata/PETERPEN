@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class transaksi extends Model
 {
     protected $table = 'transaksi';
-    protected $fillable = ['pengirim','tgl_kirim','bank', 'total', 'file_bayar', 'status','link_tes','id_daftar'];
+    protected $fillable = ['nama_rek','tgl_kirim','bank', 'total', 'bukti_bayar','id_daftar'];
     protected $primaryKey = 'id_trx';
 
     //relasi dr tabel mana
@@ -22,4 +22,12 @@ class transaksi extends Model
     public function admin(){
         return $this->hasTo('App\admin');
     }*/
+
+    public function daftar(){
+        return $this->belongsTo('App\pendaftaran');
+    }
+
+    public function transaksi(){
+        return $this->hasTo('App\detailTransaksi');
+        }
 }

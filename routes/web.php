@@ -34,9 +34,9 @@ Route::get('/user','userController@viewDataTes');
 Route::get('/biodata','userController@biodata');
 Route::post('/user/biodata','bioController@inputBio');
 Route::get('/daftar/{id_tes}','userController@viewDaftar')->name('viewiddaftar');
-Route::get('/pembayaran','transaksiController@indexTrx');
+Route::get('/pembayaran','transaksiController@viewInputTrx');
 Route::get('/riwayat','pendaftaranController@viewPilih');
-Route::post('/bayar/berhasil','transaksiController@tambahTransaksi');
+Route::post('/bayar/berhasil','transaksiController@tambahTrx');
 
 //TES
 Route::get('/tes','tesController@viewTes');
