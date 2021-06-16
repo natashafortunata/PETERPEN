@@ -27,7 +27,9 @@ class pendaftaranController extends Controller
         $data_view= pendaftaran::where([
             ['id_user', '=', $auth],
             ])->get();
-        $verTrx = transaksi::all();
+        $verTrx = transaksi::where([
+            ['id_trx', '=',$auth],
+        ])->get();
         //$data_view = pendaftaran::all();
         //$data_view = DB::table('jadwal')->join('pendaftaran','jadwal.id_jadwal','=','pendaftaran.id_daftar')->get();
         return view('User.riwayat',compact('data_view','verTrx'));
